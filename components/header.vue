@@ -76,8 +76,4 @@
     padding: 4px;
   }
 
-  .test {
-    margin: 0 0 0 16px !important;
-  }
-
 </style>
