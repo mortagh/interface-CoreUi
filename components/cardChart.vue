@@ -1,22 +1,37 @@
 <template>
-  <v-card outlined :color="color" class="card-chart">
+  <v-card outlined :color="chart.color" class="card-chart">
     <div class="d-flex flex-no-wrap justify-space-between">
 
       <div>
-        <v-card-title class="text-h5 white--text">26k <span class="subtitle-1">(-12,4%<v-icon class="white--text">
-              mdi-arrow-top-right-thin</v-icon>)</span></v-card-title>
+        <v-card-title class="text-h5 white--text">{{chart.number}} <span class="subtitle-1">{{chart.percent}}<v-icon
+              class="white--text">
+              mdi-arrow-{{chart.arrow}}-right-thin</v-icon>)</span></v-card-title>
 
-        <v-card-subtitle class="mb-0 pb-0 white--text">Users</v-card-subtitle>
+        <v-card-subtitle class="mb-0 pb-0 white--text">{{ chart.title }}</v-card-subtitle>
       </div>
 
-      <v-btn icon class="ma-2">
-        <v-icon class="white--text">mdi-dots-vertical</v-icon>
-      </v-btn>
+
+      <v-menu flat offset-y transition="scale-transition">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on" class="ma-2">
+            <v-icon class="white--text">mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-list class="d-flex flex-column">
+            <v-btn text class="ma-1">Action</v-btn>
+            <v-btn text class="ma-1">Action</v-btn>
+            <v-btn text class="ma-1">Action</v-btn>
+
+        </v-list>
+      </v-menu>
 
     </div>
 
-    <v-card-actions class="d-flex justify-center">
-      <Bar-chart :data="barChartData" :options="barChartOptions" height="100" width="200"  />
+    <v-card-actions class="d-flex justify-center" v-if="chart.type=='bar'">
+      <Bar-chart :data="chart.barChartData" :options="chart.barChartOptions" height="100" />
+    </v-card-actions>
+    <v-card-actions class="d-flex justify-center" v-if="chart.type=='line'">
+      <Line-chart :data="chart.barChartData" :options="chart.barChartOptions" height="100" />
     </v-card-actions>
 
   </v-card>
@@ -25,64 +40,15 @@
 <script>
   import Color from '~/pages/color.vue';
   import BarChart from './barChart.vue';
+  import LineChart from './lineChart.vue';
   export default {
     props: {
-      color: String,
+      chart: Object,
     },
     components: {
       Color,
-      BarChart
-    },
-    data() {
-      return {
-
-        // Traffic Chart
-        barChartData: {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "Jun",
-            "july",
-          ],
-          datasets: [{
-            label: "Visualizaciones",
-            data: [2, 1, 16, 3, 4, 5, 0],
-            backgroundColor: "transparent",
-            borderColor: "white",
-            borderWidth: 1,
-          }, ],
-        },
-        barChartOptions: {
-          responsive: true,
-          legend: {
-            display: false,
-          },
-          tooltips: {
-            backgroundColor: "#17BF62",
-          },
-          scales: {
-            xAxes: [{
-              gridLines: {
-                display: false,
-              },
-              ticks: {
-                display: false
-              },
-            }, ],
-            yAxes: [{
-              ticks: {
-                display: false
-              },
-              gridLines: {
-                display: false,
-              },
-            }, ],
-          },
-        }
-      }
+      BarChart,
+      LineChart
     },
 
   }
@@ -97,7 +63,7 @@
   }
 
   .card-chart {
-    min-width: calc(25% - 24px);
+    max-width: calc(25% - 24px);
   }
 
 </style>

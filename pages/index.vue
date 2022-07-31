@@ -1,10 +1,7 @@
 <template>
   <main>
     <div class="top-chart chart">
-      <CardChart color="darkBlue" />
-      <CardChart color="lightBlue" />
-      <CardChart color="orangeYellow" />
-      <CardChart color="salmon" />
+      <CardChart v-for="(chart,i) in littleCharts" :key="i" :chart="chart"/>
     </div>
     <div class="mid-chart chart ma-0">
       <v-card flat rounded color="white" class="d-flex flex-no-wrap justify-space-between">
@@ -28,9 +25,9 @@
             </v-btn>
           </v-btn-toggle>
 
-            <v-btn  icon tile class="pa-6 cloud-btn">
-              <v-icon class="white--text">mdi-cloud-download-outline</v-icon>
-            </v-btn>
+          <v-btn icon tile class="pa-6 cloud-btn">
+            <v-icon class="white--text">mdi-cloud-download-outline</v-icon>
+          </v-btn>
         </div>
       </v-card>
       <LineChart :data="barChartData" :options="barChartOptions" height="100" />
@@ -65,7 +62,233 @@
     data() {
 
       return {
-        date:"month",
+        date: "month",
+
+
+        littleCharts: [{
+          title: "Users",
+          number: "26K ",
+          percent: " (-12.4%",
+          arrow: "bottom",
+          type: "line",
+          color: "darkBlue",
+          barChartData: {
+            labels: [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "Jun",
+              "july",
+            ],
+            datasets: [{
+              label: "Visualizaciones",
+              data: [68, 59, 84, 84, 51, 55, 40],
+            backgroundColor: "transparent",
+            borderColor: "white",
+            borderWidth: 1,
+            }, ],
+          },
+          barChartOptions: {
+            responsive: true,
+            legend: {
+              display: false,
+            },
+            tooltips: {
+              backgroundColor: "#17BF62",
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+              yAxes: [{
+                ticks: {
+                  display: false
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+            },
+          },
+        },
+        {
+          title: "Income",
+          number: "$6.200 ",
+          percent:" (40.9% ",
+          arrow:"top",
+          type: "line",
+          color: "lightBlue",
+          barChartData: {
+            labels: [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "Jun",
+              "july",
+            ],
+            datasets: [{
+              label: "Visualizaciones",
+              data: [1, 18, 9, 17, 34, 22, 11],
+              backgroundColor: "transparent",
+              borderColor: "white",
+              borderWidth: 1,
+              lineTension: 0,
+            }, ],
+          },
+          barChartOptions: {
+            responsive: true,
+            legend: {
+              display: false,
+            },
+            tooltips: {
+              backgroundColor: "#17BF62",
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+              yAxes: [{
+                ticks: {
+                  display: false,
+                  beginAtZero: true,
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+            },
+          },
+        },
+        {
+          title: "Conversion Rate",
+          number: "2.49% ",
+          percent: " (84.7% ",
+          arrow: "top",
+          type: "line",
+          color: "orangeYellow",
+          barChartData: {
+            labels: [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "Jun",
+              "july",
+            ],
+            datasets: [{
+              label: "Visualizaciones",
+              data: [78, 81, 80, 45, 34, 12, 40],
+              backgroundColor: "#FAC144",
+              borderColor: "white",
+              borderWidth: 1,
+              pointRadius: 0
+            }, ],
+          },
+          barChartOptions: {
+            responsive: true,
+            legend: {
+              display: false,
+            },
+            tooltips: {
+              backgroundColor: "#17BF62",
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+              yAxes: [{
+                ticks: {
+                  display: false,
+                  beginAtZero: true,
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+            },
+          },
+        },
+        {
+          title: "Sessions",
+          number: "44K ",
+          percent: " (-23.6% ",
+          arrow: "bottom",
+          type: "bar",
+          color: "salmon",
+          barChartData: {
+            labels: [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "Jun",
+              "july",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December"
+            ],
+            datasets: [{
+              label: "Visualizaciones",
+              data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98],
+              backgroundColor: "#EA7575",
+              borderColor: "#EA7575",
+              borderWidth: 1,
+            }, ],
+          },
+          barChartOptions: {
+            responsive: true,
+            legend: {
+              display: false,
+            },
+            tooltips: {
+              backgroundColor: "#17BF62",
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  display: false
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+              yAxes: [{
+                ticks: {
+                  display: false,
+                  beginAtZero: true,
+                },
+                gridLines: {
+                  display: false,
+                },
+              }, ],
+            },
+          },
+        },
+        ],
+
 
         //Stats
         stats: [{
@@ -118,12 +341,29 @@
             "july",
           ],
           datasets: [{
-            label: "Visualizaciones",
+            label: "Data1",
             data: [2, 1, 16, 3, 4, 5, 0],
             backgroundColor: "#E5E6E7",
             borderColor: "#3399FF",
             borderWidth: 2,
-          }, ],
+            pointRadius: 0,
+          },{
+            label: "Data2",
+            data: [10, 3, 6, 8, 4, 7, 2],
+            backgroundColor: "transparent",
+            borderColor: "#94DBAC",
+            borderWidth: 2,
+            pointRadius: 0,
+
+          },{
+          label: "data3",
+            data: [2, 2, 2, 2, 2, 2, 2],
+            backgroundColor: "transparent",
+            borderColor: "#CF4748",
+            borderWidth: 2,
+            pointRadius: 0,
+            borderDash: [10,5]
+            } ],
         },
         barChartOptions: {
           responsive: true,
@@ -244,7 +484,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  .cloud-btn{
+
+  .cloud-btn {
     background-color: #321fdb;
     border-radius: 4px;
   }
