@@ -15,8 +15,8 @@
 
     </div>
 
-    <v-card-actions>
-      <Bar-chart :data="barChartData" :options="barChartOptions" height="100" width="200" />
+    <v-card-actions class="d-flex justify-center">
+      <Bar-chart :data="barChartData" :options="barChartOptions" height="100" width="200"  />
     </v-card-actions>
 
   </v-card>
@@ -24,7 +24,7 @@
 
 <script>
   import Color from '~/pages/color.vue';
-  import BarChart from './BarChart.vue';
+  import BarChart from './barChart.vue';
   export default {
     props: {
       color: String,
@@ -33,53 +33,60 @@
       Color,
       BarChart
     },
-    // Traffic Chart
-    barChartData: {
-      labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "Jun",
-        "july",
-      ],
-      datasets: [{
-        label: "Visualizaciones",
-        data: [2, 1, 16, 3, 4, 5, 0],
-        backgroundColor: "#E5E6E7",
-        borderColor: "#3399FF",
-        borderWidth: 2,
-      }, ],
+    data() {
+      return {
+
+        // Traffic Chart
+        barChartData: {
+          labels: [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "Jun",
+            "july",
+          ],
+          datasets: [{
+            label: "Visualizaciones",
+            data: [2, 1, 16, 3, 4, 5, 0],
+            backgroundColor: "transparent",
+            borderColor: "white",
+            borderWidth: 1,
+          }, ],
+        },
+        barChartOptions: {
+          responsive: true,
+          legend: {
+            display: false,
+          },
+          tooltips: {
+            backgroundColor: "#17BF62",
+          },
+          scales: {
+            xAxes: [{
+              gridLines: {
+                display: false,
+              },
+              ticks: {
+                display: false
+              },
+            }, ],
+            yAxes: [{
+              ticks: {
+                display: false
+              },
+              gridLines: {
+                display: false,
+              },
+            }, ],
+          },
+        }
+      }
     },
-    barChartOptions: {
-      responsive: true,
-      legend: {
-        display: false,
-      },
-      tooltips: {
-        backgroundColor: "#17BF62",
-      },
-      scales: {
-        xAxes: [{
-          gridLines: {
-            display: true,
-          },
-        }, ],
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            max: 20,
-            min: 0,
-            stepSize: 5,
-          },
-          gridLines: {
-            display: true,
-          },
-        }, ],
-      },
-    }
+
   }
+
 </script>
 
 <style>

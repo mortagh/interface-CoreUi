@@ -22,7 +22,7 @@
 
         <v-list-item v-if="category.type=='category'" class="greyTextNavBar--text">
           <v-list-item-content>
-            <v-list-item-title class="subtitle-2 text-uppercase" v-text="category.title" />
+            <v-list-item-title class="subtitle-2 text-uppercase font-weight-bold" v-text="category.title" />
           </v-list-item-content>
         </v-list-item>
 

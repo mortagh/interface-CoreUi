@@ -66,6 +66,8 @@
 
       return {
         date:"month",
+
+        //Stats
         stats: [{
             title: "Visits",
             stat: "29.703 Users (40%)",
