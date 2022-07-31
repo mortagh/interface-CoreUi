@@ -24,11 +24,11 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~assets/styles/global.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -56,17 +56,26 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
+    defaultAssets: {
+    font: {
+      family: 'Segoe UI'
+    }
+  },
     theme: {
       themes: {
         light: {
           primary: "#303C54",
-          accent: colors.grey.darken3,
           secondary: "#3C4B64",
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
           greyTextNavBar: "#B1B7C1",
+          darkBlue: "#321FDB",
+          lightBlue: "#3399FF",
+          orangeYellow: "#F9B115",
+          lightOrange:"#EBEDEF",
+          salmon: "#E55353",
+          facebookColor: "#4F6AA3",
+          twitterColor: "#00ACED",
+          linkedinColor: "#4875B4"
         }
       }
     }

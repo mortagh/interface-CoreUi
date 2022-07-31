@@ -20,6 +20,10 @@
 
 <script>
 export default {
-  name: 'InspirePage'
+  name: 'ColorPage'
 }
 </script>
+
+<style scoped>
+
+</style>

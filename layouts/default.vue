@@ -1,15 +1,8 @@
 <template>
   <v-app>
-    <Navigation />
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-spacer />
-    </v-app-bar>
-    <v-main>
+    <Navigation ref="drawer"/>
+    <Header @toggle-drawer="$refs.drawer.drawer = !$refs.drawer.drawer"/>
+    <v-main >
       <v-container>
         <Nuxt />
       </v-container>
@@ -23,18 +16,21 @@
 </template>
 
 <script>
+import Header from '~/components/header.vue'
 import navigation from '~/components/navigation.vue'
 export default {
-  components: { navigation },
+  components: { navigation, Header },
   name: 'DefaultLayout',
   data () {
     return {
-      drawer: false,
-      clipped: false,
       fixed: false,
-      right: true,
-      rightDrawer: false,
     }
   }
 }
 </script>
+
+<style>
+  .v-main{
+    background-color: #EBEDEF ;
+  }
+</style>
