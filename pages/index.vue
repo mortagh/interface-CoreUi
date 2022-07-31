@@ -11,7 +11,7 @@
         </div>
 
         <div class="allBtn ma-4">
-          <v-btn-toggle v-model="date" class="mr-4">
+          <v-btn-toggle v-model="date" class="mr-4 ">
             <v-btn value="day">
               <span class="hidden-sm-and-down">Day</span>
             </v-btn>

@@ -1,19 +1,19 @@
 <template>
-  <v-card outlined :color="chart.color" class="card-chart">
+  <v-card outlined :color="chart.color" class="card-chart pa-2">
     <div class="d-flex flex-no-wrap justify-space-between">
 
-      <div>
-        <v-card-title class="text-h5 white--text">{{chart.number}} <span class="subtitle-1">{{chart.percent}}<v-icon
+      <div >
+        <v-card-title class="text-h5 white--text pl-2 pt-0">{{chart.number}} <span class="subtitle-1">{{chart.percent}}<v-icon
               class="white--text">
               mdi-arrow-{{chart.arrow}}-right-thin</v-icon>)</span></v-card-title>
 
-        <v-card-subtitle class="mb-0 pb-0 white--text">{{ chart.title }}</v-card-subtitle>
+        <v-card-subtitle class="mb-0 pb-0 pl-2 white--text">{{ chart.title }}</v-card-subtitle>
       </div>
 
 
-      <v-menu flat offset-y transition="scale-transition">
+      <v-menu flat offset-y transition="scale-transition" >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn icon v-bind="attrs" v-on="on" class="ma-2">
+          <v-btn icon v-bind="attrs" v-on="on" class="">
             <v-icon class="white--text">mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
@@ -27,12 +27,12 @@
 
     </div>
 
-    <v-card-actions class="d-flex justify-center" v-if="chart.type=='bar'">
+    <div v-if="chart.type=='bar'">
       <Bar-chart :data="chart.barChartData" :options="chart.barChartOptions" height="100" />
-    </v-card-actions>
-    <v-card-actions class="d-flex justify-center" v-if="chart.type=='line'">
+    </div>
+    <div v-if="chart.type=='line'">
       <Line-chart :data="chart.barChartData" :options="chart.barChartOptions" height="100" />
-    </v-card-actions>
+    </div>
 
   </v-card>
 </template>
@@ -63,7 +63,8 @@
   }
 
   .card-chart {
-    max-width: calc(25% - 24px);
+    width: calc(25% - 24px);
   }
+
 
 </style>
